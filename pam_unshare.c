@@ -78,7 +78,7 @@ PAM_EXTERN int pam_sm_open_session(pam_handle_t *pamh, int flags,
     const char* target_group = argv[0];
 
     if (strcmp(target_group, group->gr_name) == 0) {
-	pam_syslog(pamh, LOG_INFO, "found user in databox! calling unshare()");
+	pam_syslog(pamh, LOG_INFO, "found user in target group! calling unshare()");
 
 	if(unshare(CLONE_NEWNS) < 0) {
             pam_syslog(pamh, LOG_ERR, "Unable to unshare from parent namespace, %m");
