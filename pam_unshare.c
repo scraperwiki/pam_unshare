@@ -97,12 +97,6 @@ PAM_EXTERN int pam_sm_close_session(pam_handle_t *pamh, int flags,
                                     int argc, const char **argv)
 {
     syslog(LOG_INFO, "unshare close session, flags %08x\n", (unsigned int)flags);
-    /* Parse arguments. */
-    if (argc > 0) {
-       	pam_syslog(pamh, LOG_ERR,
-	    "pam_unshare does not take any arguments");
-	return PAM_SESSION_ERR;
-    }
 
     return PAM_SUCCESS;
 }
