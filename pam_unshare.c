@@ -62,7 +62,7 @@ PAM_EXTERN int pam_sm_open_session(pam_handle_t *pamh, int flags,
     if(rc == PAM_SUCCESS) {
         username = item_v;
     }
-    syslog(LOG_INFO, "pam_unshare, return code %d, found user %s", rc, username);
+    pam_syslog(pamh, LOG_INFO, "pam_unshare, return code %d, found user %s", rc, username);
 
     struct passwd* user = getpwnam(username);
     if (user == NULL) {
@@ -96,7 +96,7 @@ PAM_EXTERN int pam_sm_open_session(pam_handle_t *pamh, int flags,
 PAM_EXTERN int pam_sm_close_session(pam_handle_t *pamh, int flags,
                                     int argc, const char **argv)
 {
-    syslog(LOG_INFO, "unshare close session, flags %08x\n", (unsigned int)flags);
+    pam_syslog(pamh, LOG_INFO, "unshare close session, flags %08x\n", (unsigned int)flags);
 
     return PAM_SUCCESS;
 }
